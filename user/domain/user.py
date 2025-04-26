@@ -21,9 +21,9 @@ from dataclasses import dataclass
            # 생성자 함수를 자동으로 만들어주고, 타입을 쉽게 제공해준다.
 class User:
     # 아이디(리소스 구분자), 이름, 이메일, 비밀번호, 계정 생성일시, 계정 수정일시
-    id: str
-    name: str
-    email: str
-    password: str
-    created_at: str
-    updated_at: str
+    id: str # 서버에서 ULID 생성
+    name: str # 사용자 입력
+    email: str # 사용자 입력
+    password: str # 사용자 입력
+    created_at: str # 서버에서 생성
+    updated_at: str # 서버에서 생성

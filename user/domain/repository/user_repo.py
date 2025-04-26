@@ -12,8 +12,17 @@ User 도메인 영속화하기 위한 모듈이다.
     - abc 모듈은 Abstract Base Class 약자이다.
     - 의존성 역전되면 나중에 구현체가 변경되더라도 사용하는 쪽(고수준 계층)에는 영향이 없다.
 '''
-from abc import ABCMeta
+from abc import ABCMeta, abstractmethod
+
+from user.domain.user import User
 
 
 class IUserRepository(metaclass=ABCMeta):
-    pass
+
+    @abstractmethod
+    def save(self, user: User):
+        raise NotImplementedError("메소드가 구현되지 않았습니다.")
+
+    @abstractmethod
+    def find_by_email(self, email: str) -> User:
+        raise NotImplementedError("메소드가 구현되지 않았습니다.")
