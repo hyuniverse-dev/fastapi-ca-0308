@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>축하합니다! | 서비스명</title>
+  <style>
+    /* 기본 스타일 초기화 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      padding: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .celebration-box {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      padding: 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      transform: translateY(50px);
+      opacity: 0;
+      animation: slideUp 1s forwards 0.5s;
+    }
+
+    @keyframes slideUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #6a11cb;
+      animation: glow 2s infinite alternate;
+      text-shadow: 0 0 10px rgba(106, 17, 203, 0.5);
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px rgba(106, 17, 203, 0.5);
+      }
+      to {
+        text-shadow: 0 0 20px rgba(106, 17, 203, 0.8), 0 0 30px rgba(106, 17, 203, 0.6);
+      }
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 30px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .message {
+      font-size: 22px;
+      color: #2575fc;
+      font-weight: 600;
+      margin-bottom: 30px;
+      line-height: 1.5;
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .buttons-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      border-radius: 50px;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      margin: 10px;
+      color: white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-github {
+      background: linear-gradient(45deg, #333333, #5c5c5c);
+      animation: pulse-github 2s infinite;
+    }
+
+    .btn-notion {
+      background: linear-gradient(45deg, #000000, #2e2e2e);
+      animation: pulse-notion 2s infinite;
+    }
+
+    @keyframes pulse-github {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    @keyframes pulse-notion {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-icon {
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    /* 배경 원 애니메이션 */
+    .background-animation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(5px);
+      animation: float 15s infinite linear;
+    }
+
+    .circle:nth-child(1) {
+      top: 10%;
+      left: 10%;
+      width: 80px;
+      height: 80px;
+    }
+
+    .circle:nth-child(2) {
+      top: 20%;
+      right: 20%;
+      width: 120px;
+      height: 120px;
+      animation-delay: 2s;
+      animation-duration: 17s;
+    }
+
+    .circle:nth-child(3) {
+      bottom: 15%;
+      left: 25%;
+      width: 100px;
+      height: 100px;
+      animation-delay: 4s;
+      animation-duration: 13s;
+    }
+
+    .circle:nth-child(4) {
+      bottom: 30%;
+      right: 15%;
+      width: 60px;
+      height: 60px;
+      animation-delay: 6s;
+      animation-duration: 12s;
+    }
+
+    .circle:nth-child(5) {
+      top: 40%;
+      left: 15%;
+      width: 50px;
+      height: 50px;
+      animation-delay: 8s;
+      animation-duration: 16s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0.8;
+      }
+      50% {
+        transform: translateY(-100px) translateX(100px) rotate(180deg);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(0) translateX(0) rotate(360deg);
+        opacity: 0.8;
+      }
+    }
+
+    /* 폭죽 효과 */
+    .firework {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      animation: explode 1.5s ease-out forwards;
+    }
+
+    @keyframes explode {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(30);
+        opacity: 0;
+      }
+    }
+
+    /* 벚꽃 효과 */
+    .cherry-blossom {
+      position: absolute;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.8;
+      z-index: 2;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translate(0, -10vh) rotate(0deg);
+      }
+      100% {
+        transform: translate(calc(var(--random-x) * 1vw), 100vh) rotate(360deg);
+      }
+    }
+
+    /* 트로피 아이콘 */
+    .trophy {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    /* 반응형 디자인 */
+    @media (max-width: 768px) {
+      .celebration-box {
+        padding: 40px 30px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .subtitle {
+        font-size: 16px;
+      }
+
+      .message {
+        font-size: 18px;
+      }
+
+      .buttons-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 250px;
+        margin: 8px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .celebration-box {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      .trophy {
+        width: 60px;
+        height: 60px;
+      }
+
+      .btn {
+        padding: 12px 25px;
+        font-size: 15px;
+      }
+    }
+
+    .btn-review {
+      background: linear-gradient(45deg, #e74c3c, #c0392b);
+      animation: pulse-review 2s infinite;
+    }
+
+    @keyframes pulse-review {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 5px 25px rgba(231, 76, 60, 0.6);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+      }
+    }
+
+  </style>
+</head>
+<body>
+<div class="background-animation">
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+</div>
+
+<div id="cherry-blossom-container"></div>
+<div id="fireworks-container"></div>
+
+<div class="container">
+  <div class="celebration-box">
+    <div class="trophy">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 16C15.866 16 19 12.866 19 9V4H5V9C5 12.866 8.13401 16 12 16Z" stroke="#FFD700"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="#FFD700"
+              fill-opacity="0.3"/>
+        <path d="M12 16V21" stroke="#FFD700" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round"/>
+        <path d="M8 21H16" stroke="#FFD700" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round"/>
+        <path d="M19 4H20C21.1046 4 22 4.89543 22 6V7C22 8.65685 20.6569 10 19 10" stroke="#FFD700"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M5 4H4C2.89543 4 2 4.89543 2 6V7C2 8.65685 3.34315 10 5 10" stroke="#FFD700"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <h1>축하합니다! 🎉</h1>
+    <p class="subtitle">2개월간의 열정적인 여정, 정말 대단합니다!</p>
+    <p class="message">
+      지난 시간 동안 여러분이 보여준 끈기와 열정에 진심으로 박수를 보냅니다.<br>
+      어려움 속에서도 포기하지 않고 여기까지 오신 여러분은 이미 승리자입니다.<br>
+      앞으로도 계속해서 성장하는 개발자가 되길 응원합니다!
+    </p>
+
+    <div class="buttons-container">
+      <a href="#" id="githubBtn" class="btn btn-github">
+        <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
+             xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M12 0C5.37 0 0 5.37 0 12C0 17.31 3.435 21.795 8.205 23.385C8.805 23.49 9.03 23.13 9.03 22.815C9.03 22.53 9.015 21.585 9.015 20.58C6 21.135 5.22 19.845 4.98 19.17C4.845 18.825 4.26 17.76 3.75 17.475C3.33 17.25 2.73 16.695 3.735 16.68C4.68 16.665 5.355 17.55 5.58 17.91C6.66 19.725 8.385 19.215 9.075 18.9C9.18 18.12 9.495 17.595 9.84 17.295C7.17 16.995 4.38 15.96 4.38 11.37C4.38 10.065 4.845 8.985 5.61 8.145C5.49 7.845 5.07 6.615 5.73 4.965C5.73 4.965 6.735 4.65 9.03 6.195C9.99 5.925 11.01 5.79 12.03 5.79C13.05 5.79 14.07 5.925 15.03 6.195C17.325 4.635 18.33 4.965 18.33 4.965C18.99 6.615 18.57 7.845 18.45 8.145C19.215 8.985 19.68 10.05 19.68 11.37C19.68 15.975 16.875 16.995 14.205 17.295C14.64 17.67 15.015 18.39 15.015 19.515C15.015 21.12 15 22.41 15 22.815C15 23.13 15.225 23.505 15.825 23.385C18.2072 22.5807 20.2772 21.0497 21.7437 19.0074C23.2101 16.965 23.9993 14.5143 24 12C24 5.37 18.63 0 12 0Z"/>
+        </svg>
+        GitHub 소스 코드
+      </a>
+
+      <a href="#" id="notionBtn" class="btn btn-notion">
+        <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
+             xmlns="http://www.w3.org/2000/svg">
+          <path
+              d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28.047-.466-.233-.932-1.026-1.678-1.96-1.678L4.926 2.667c-.7 0-.98.466-.746.932l.28.606zm.793 3.59v13.037c0 .746.373 1.026 1.12.98l14.335-.84c.746-.046.933-.466.933-1.026V7.218c0-.56-.233-.793-.606-.747l-15.026.933c-.56 0-.746.28-.746.84zm14.615.28c.093.42 0 .84-.42.888l-.7.14v10.003c-.608.327-1.168.5-1.634.5-.7 0-.873-.28-1.4-.98l-4.29-6.776v6.35c.56.12 1.026.186 1.634.186.093 0 .186 0 .28.047v.932c-.896.145-1.78.205-2.59.186-1.4 0-2.753-.047-3.033-.186v-.932c.56-.14.653-.186.933-.186l.7-15.12c-.28-.094-.56-.234-.793-.234h-.233v-.932c.793-.14 1.96-.234 2.8-.234.98 0 1.4.234 1.866.98l4.756 7.518V8.591c-.47-.048-.98-.14-1.493-.14-.233 0-.28 0-.28-.047v-.933c.98-.093 1.96-.186 2.986-.186 1.12 0 2.147.093 2.427.186v.933z"/>
+        </svg>
+        Notion 강의 자료
+      </a>
+
+      <a href="https://gangnam.koreaisacademy.com/community/post.asp" id="reviewBtn"
+         class="btn btn-review" target="_blank">
+        <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
+             xmlns="http://www.w3.org/2000/svg">
+          <path
+              d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3.00003H13C15.0843 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91568 21 11V11.5Z"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              fill="none"/>
+        </svg>
+        수강후기 작성하기
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 페이지 로드 시 실행
+  document.addEventListener('DOMContentLoaded', function () {
+    // 벚꽃 효과
+    createCherryBlossoms();
+
+    // 폭죽 효과
+    createFireworks();
+
+    // 버튼 효과
+    setupButtonEffect();
+  });
+
+  // 벚꽃 생성 함수
+  function createCherryBlossoms() {
+    const container = document.getElementById('cherry-blossom-container');
+    const blossomCount = 50; // 벚꽃 개수
+
+    // 벚꽃 SVG 이미지 배열
+    const blossomSvgs = [
+      `<svg width="20" height="20" viewBox="0 0 100 100" fill="#ffcce0" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 0 C60 20 80 30 100 30 C80 40 70 60 70 100 C60 70 40 60 0 60 C30 50 30 30 50 0" />
+                </svg>`,
+      `<svg width="15" height="15" viewBox="0 0 100 100" fill="#ffd6e6" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 0 C60 30 70 30 100 30 C70 40 60 60 60 100 C50 70 30 60 0 60 C30 40 40 30 50 0" />
+                </svg>`,
+      `<svg width="25" height="25" viewBox="0 0 100 100" fill="#ffb3d1" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 0 C70 30 80 30 100 30 C80 50 70 60 70 100 C50 70 30 60 0 60 C20 50 30 30 50 0" />
+                </svg>`
+    ];
+
+    // 초기 벚꽃 생성
+    for (let i = 0; i < blossomCount; i++) {
+      setTimeout(() => {
+        createBlossom();
+      }, i * 300);
+    }
+
+    // 주기적으로 벚꽃 생성
+    setInterval(() => {
+      createBlossom();
+    }, 1000);
+
+    function createBlossom() {
+      const blossom = document.createElement('div');
+      blossom.classList.add('cherry-blossom');
+
+      // 랜덤 SVG 선택
+      const randomSvg = blossomSvgs[Math.floor(Math.random() * blossomSvgs.length)];
+      const svgUrl = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(randomSvg);
+      blossom.style.backgroundImage = `url('${svgUrl}')`;
+
+      // 랜덤 크기 설정 (15px ~ 30px)
+      const size = Math.random() * 15 + 15;
+      blossom.style.width = `${size}px`;
+      blossom.style.height = `${size}px`;
+
+      // 랜덤 위치 설정 (좌우)
+      const startPositionX = Math.random() * 100;
+      blossom.style.left = `${startPositionX}vw`;
+
+      // 랜덤 이동 방향 (좌우 흔들림)
+      const randomX = Math.random() * 100 - 50; // -50 ~ 50
+      blossom.style.setProperty('--random-x', randomX);
+
+      // 랜덤 애니메이션 속도 (5s ~ 15s)
+      const animationDuration = Math.random() * 10 + 5;
+      blossom.style.animationDuration = `${animationDuration}s`;
+
+      // 랜덤 회전 속도
+      blossom.style.animationTimingFunction = `ease-in-out`;
+
+      // 랜덤 시작 위치 (화면 위 바깥에서 시작)
+      blossom.style.top = `-${size}px`;
+
+      container.appendChild(blossom);
+
+      // 애니메이션 완료 후 제거
+      setTimeout(() => {
+        blossom.remove();
+      }, animationDuration * 1000);
+    }
+  }
+
+  // 폭죽 효과 생성 함수
+  function createFireworks() {
+    const fireworksContainer = document.getElementById('fireworks-container');
+    const fireworkColors = ['#FF4500', '#FFD700', '#FF1493', '#00FFFF', '#FF00FF', '#ADFF2F'];
+
+    // 초기 폭죽 생성
+    createInitialFireworks();
+
+    // 주기적으로 폭죽 생성
+    setInterval(createRandomFirework, 2000);
+
+    function createInitialFireworks() {
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          createRandomFirework();
+        }, i * 300);
+      }
+    }
+
+    function createRandomFirework() {
+      const x = Math.random() * 100;
+      const y = Math.random() * 100;
+      const color = fireworkColors[Math.floor(Math.random() * fireworkColors.length)];
+
+      const firework = document.createElement('div');
+      firework.classList.add('firework');
+      firework.style.left = x + 'vw';
+      firework.style.top = y + 'vh';
+      firework.style.backgroundColor = color;
+
+      fireworksContainer.appendChild(firework);
+
+      // 애니메이션 완료 후 제거
+      setTimeout(() => {
+        firework.remove();
+      }, 1500);
+    }
+  }
+
+  // 버튼 효과 설정
+  // 버튼 효과 설정
+  function setupButtonEffect() {
+    const githubBtn = document.getElementById('githubBtn');
+    const notionBtn = document.getElementById('notionBtn');
+    const reviewBtn = document.getElementById('reviewBtn');
+
+    // 버튼에 마우스 오버 시 색상 변화 효과
+    githubBtn.addEventListener('mouseenter', function () {
+      this.style.background = 'linear-gradient(45deg, #555555, #777777)';
+    });
+
+    githubBtn.addEventListener('mouseleave', function () {
+      this.style.background = 'linear-gradient(45deg, #333333, #5c5c5c)';
+    });
+
+    notionBtn.addEventListener('mouseenter', function () {
+      this.style.background = 'linear-gradient(45deg, #1a1a1a, #3e3e3e)';
+    });
+
+    notionBtn.addEventListener('mouseleave', function () {
+      this.style.background = 'linear-gradient(45deg, #000000, #2e2e2e)';
+    });
+
+    // 수강후기 버튼 호버 효과 추가
+    reviewBtn.addEventListener('mouseenter', function () {
+      this.style.background = 'linear-gradient(45deg, #e84118, #d63031)';
+    });
+
+    reviewBtn.addEventListener('mouseleave', function () {
+      this.style.background = 'linear-gradient(45deg, #e74c3c, #c0392b)';
+    });
+
+    // 클릭 시 물결 효과
+    const buttons = [githubBtn, notionBtn, reviewBtn]; // reviewBtn 추가
+    buttons.forEach(button => {
+      button.addEventListener('click', function (e) {
+        const x = e.clientX - e.target.getBoundingClientRect().left;
+        const y = e.clientY - e.target.getBoundingClientRect().top;
+
+        const ripple = document.createElement('span');
+        ripple.style.position = 'absolute';
+        ripple.style.background = 'rgba(255, 255, 255, 0.7)';
+        ripple.style.borderRadius = '50%';
+        ripple.style.width = '10px';
+        ripple.style.height = '10px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.style.transform = 'scale(0)';
+        ripple.style.animation = 'ripple 0.6s linear';
+        ripple.style.animationFillMode = 'forwards';
+
+        this.appendChild(ripple);
+
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    });
+  }
+
+  // 추가 물결 효과 애니메이션
+  const styleSheet = document.styleSheets[0];
+  styleSheet.insertRule(`
+            @keyframes ripple {
+                to {
+                    transform: scale(15);
+                    opacity: 0;
+                }
+            }
+        `, styleSheet.cssRules.length);
+</script>
+</body>
+</html>

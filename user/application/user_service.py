@@ -16,7 +16,7 @@ class UserService:
             self,
             user_repo: IUserRepository
     ):
-        self.user_repe = user_repo # Depends 함수의 인수로 컨테이너에 등록한 UserRepository 객체를 제공한다.
+        self.user_repo = user_repo # Depends 함수의 인수로 컨테이너에 등록한 UserRepository 객체를 제공한다.
                                                                                  # 이제 UserService 에서는 컨테이너에서 제공하는 UserRepository 객체를 사용하는 것이고,
                                                                                  # 이제는 UserService 에서는 UserRepository 를 직접 의존하지 않게 된다.
         self.ulid = ULID()

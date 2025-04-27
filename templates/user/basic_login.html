@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인 | 서비스명</title>
+  <style>
+    /* 기본 스타일 초기화 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      padding: 40px 20px;
+    }
+
+    .login-box {
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .login-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .logo {
+      margin-bottom: 30px;
+    }
+
+    .logo svg {
+      width: 80px;
+      height: 80px;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #555;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: #4A6CF7;
+      box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.2);
+      outline: none;
+    }
+
+    .password-field {
+      position: relative;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .password-toggle:focus {
+      outline: none;
+    }
+
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .form-check {
+      display: flex;
+      align-items: center;
+    }
+
+    .form-check-input {
+      margin-right: 8px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .form-check-label {
+      cursor: pointer;
+    }
+
+    .forgot-password {
+      color: #4A6CF7;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background-color: #4A6CF7;
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    .btn-primary:hover {
+      background-color: #3a5bd9;
+      box-shadow: 0 5px 15px rgba(74, 108, 247, 0.3);
+    }
+
+    .btn-back {
+      background-color: transparent;
+      color: #555;
+      border: 1px solid #ddd;
+    }
+
+    .btn-back:hover {
+      background-color: #f5f5f5;
+    }
+
+    .btn-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 13px;
+      color: #888;
+    }
+
+    .footer a {
+      color: #4A6CF7;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .error-message {
+      color: #e74c3c;
+      font-size: 13px;
+      margin-top: 5px;
+      display: none;
+      text-align: left;
+    }
+
+    /* 물결 효과 */
+    .ripple {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      pointer-events: none;
+    }
+
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* 반응형 디자인 */
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px;
+      }
+
+      .login-box {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="login-box">
+    <div class="logo">
+      <!-- 로고 (SVG 사용) -->
+      <svg width="80" height="80" viewBox="0 0 80 80" fill="none"
+           xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="40" fill="#4A6CF7" fill-opacity="0.1"/>
+        <path d="M52 28H28V52H52V28Z" stroke="#4A6CF7" stroke-width="4" stroke-linecap="round"
+              stroke-linejoin="round"/>
+        <path d="M28 40H52" stroke="#4A6CF7" stroke-width="4" stroke-linecap="round"
+              stroke-linejoin="round"/>
+        <path d="M40 28V52" stroke="#4A6CF7" stroke-width="4" stroke-linecap="round"
+              stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <h1>로그인</h1>
+    <p class="subtitle">서비스를 이용하기 위해 로그인해주세요</p>
+
+    <form id="loginForm" action="/api/users/login/basic" method="POST">
+      <div class="form-group">
+        <label for="email" class="form-label">이메일</label>
+        <input type="email" id="email" name="email" class="form-control"
+               placeholder="example@email.com" required>
+        <div id="emailError" class="error-message">유효한 이메일 주소를 입력해주세요.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="form-label">비밀번호</label>
+        <div class="password-field">
+          <input type="password" id="password" name="password" class="form-control"
+                 placeholder="비밀번호를 입력하세요" required>
+          <button type="button" id="passwordToggle" class="password-toggle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+              <path
+                  d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div id="passwordError" class="error-message">비밀번호는 최소 6자 이상이어야 합니다.</div>
+      </div>
+
+      <div class="form-options">
+        <div class="form-check">
+          <input type="checkbox" id="rememberMe" name="rememberMe" class="form-check-input">
+          <label for="rememberMe" class="form-check-label">로그인 유지</label>
+        </div>
+        <a href="/view/users/forgot-password" class="forgot-password">비밀번호 찾기</a>
+      </div>
+
+      <button type="submit" class="btn btn-primary">로그인</button>
+
+      <a href="/view/users/login" class="btn btn-back">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round"/>
+          <path d="M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round"/>
+        </svg>
+        돌아가기
+      </a>
+    </form>
+
+    <div class="footer">
+      <p>아직 계정이 없으신가요? <a href="/view/users/signup">회원가입</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 비밀번호 표시/숨김 토글
+  const passwordToggle = document.getElementById('passwordToggle');
+  const passwordField = document.getElementById('password');
+
+  passwordToggle.addEventListener('click', function () {
+    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordField.setAttribute('type', type);
+
+    // 아이콘 변경
+    if (type === 'text') {
+      this.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.94 17.94C16.2306 19.243 14.1491 19.9649 12 20C5 20 1 12 1 12C2.24389 9.68192 3.96914 7.65663 6.06 6.06M9.9 4.24C10.5883 4.07888 11.2931 3.99834 12 4C19 4 23 12 23 12C22.393 13.1356 21.6691 14.2047 20.84 15.19M14.12 14.12C13.8454 14.4147 13.5141 14.6511 13.1462 14.8151C12.7782 14.9791 12.3809 15.0673 11.9781 15.0744C11.5753 15.0815 11.1752 15.0074 10.8016 14.8565C10.4281 14.7056 10.0887 14.4811 9.80385 14.1962C9.51897 13.9113 9.29439 13.572 9.14351 13.1984C8.99262 12.8249 8.91853 12.4247 8.92563 12.0219C8.93274 11.6191 9.02091 11.2219 9.18488 10.8539C9.34884 10.4859 9.58525 10.1547 9.88 9.88" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M1 1L23 23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                `;
+    } else {
+      this.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                `;
+    }
+  });
+
+  // 버튼 물결 효과
+  document.querySelectorAll('.btn').forEach(button => {
+    button.addEventListener('click', function (e) {
+      // 현재 버튼 내에서의 클릭 위치 계산
+      const x = e.clientX - e.target.getBoundingClientRect().left;
+      const y = e.clientY - e.target.getBoundingClientRect().top;
+
+      // 물결 효과 요소 생성
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple');
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+
+      // 버튼에 물결 효과 요소 추가
+      this.appendChild(ripple);
+
+      // 애니메이션 완료 후 요소 제거
+      setTimeout(() => {
+        ripple.remove();
+      }, 600);
+    });
+  });
+
+  // 페이지 로드 애니메이션
+  document.addEventListener('DOMContentLoaded', function () {
+    const loginBox = document.querySelector('.login-box');
+    loginBox.style.opacity = '0';
+    loginBox.style.transform = 'translateY(20px)';
+
+    setTimeout(() => {
+      loginBox.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      loginBox.style.opacity = '1';
+      loginBox.style.transform = 'translateY(0)';
+    }, 100);
+  });
+
+  // 폼 유효성 검사 및 AJAX 제출
+  const loginForm = document.getElementById('loginForm');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const emailError = document.getElementById('emailError');
+  const passwordError = document.getElementById('passwordError');
+
+  loginForm.addEventListener('submit', async function (e) {
+    e.preventDefault(); // 기본 폼 제출 동작 중단
+
+    let isValid = true;
+
+    // 이메일 유효성 검사
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(emailInput.value)) {
+      emailError.style.display = 'block';
+      isValid = false;
+    } else {
+      emailError.style.display = 'none';
+    }
+
+    // 비밀번호 유효성 검사
+    if (passwordInput.value.length < 6) {
+      passwordError.style.display = 'block';
+      isValid = false;
+    } else {
+      passwordError.style.display = 'none';
+    }
+
+    // 유효성 검사 실패 시 함수 종료
+    if (!isValid) {
+      return;
+    }
+
+    // 로그인 버튼에 로딩 상태 표시
+    const loginButton = document.querySelector('.btn-primary');
+    const originalButtonText = loginButton.innerHTML;
+    loginButton.innerHTML = '로그인 중...';
+    loginButton.disabled = true;
+
+    // FormData를 사용하여 폼 데이터 수집
+    const formData = new FormData(loginForm);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      // API 호출
+      const response = await fetch('/api/users/login/basic', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+        credentials: 'include' // 쿠키 포함
+      });
+
+      if (response.ok) {
+        // 로그인 성공 시 celebrate 페이지로 리다이렉션
+        window.location.href = '/view/users/celebrate';
+      } else {
+        // 로그인 실패 시 오류 메시지 표시
+        const errorData = await response.json().catch(() => ({message: '로그인에 실패했습니다.'}));
+        showErrorMessage(errorData.message || '로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.');
+      }
+    } catch (error) {
+      // 네트워크 오류 등 예외 처리
+      console.error('로그인 중 오류 발생:', error);
+      showErrorMessage('서버 연결에 문제가 발생했습니다. 잠시 후 다시 시도해주세요.');
+    } finally {
+      // 버튼 상태 복원
+      loginButton.innerHTML = originalButtonText;
+      loginButton.disabled = false;
+    }
+  });
+
+  // 오류 메시지 표시 함수 (alert 대신 UI에 메시지 표시)
+  function showErrorMessage(message) {
+    // 기존 오류 메시지 요소가 있으면 제거
+    const existingError = document.getElementById('loginError');
+    if (existingError) {
+      existingError.remove();
+    }
+
+    // 새 오류 메시지 요소 생성
+    const errorElement = document.createElement('div');
+    errorElement.id = 'loginError';
+    errorElement.style.color = '#e74c3c';
+    errorElement.style.backgroundColor = '#fdecea';
+    errorElement.style.padding = '10px';
+    errorElement.style.borderRadius = '5px';
+    errorElement.style.marginBottom = '15px';
+    errorElement.style.fontSize = '14px';
+    errorElement.style.textAlign = 'center';
+    errorElement.innerText = message;
+
+    // 로그인 버튼 위에 오류 메시지 삽입
+    const loginButton = document.querySelector('.btn-primary');
+    loginButton.parentNode.insertBefore(errorElement, loginButton);
+
+    // 5초 후 오류 메시지 자동 제거
+    setTimeout(() => {
+      errorElement.style.opacity = '0';
+      errorElement.style.transition = 'opacity 0.5s ease';
+      setTimeout(() => errorElement.remove(), 500);
+    }, 5000);
+  }
+</script>
+</body>
+</html>

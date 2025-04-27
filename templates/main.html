@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 선택 | 서비스명</title>
+    <style>
+        /* 기본 스타일 초기화 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 40px 20px;
+        }
+
+        .login-box {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .login-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .logo {
+            margin-bottom: 30px;
+        }
+
+        .logo svg {
+            width: 80px;
+            height: 80px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .login-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 20px;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .btn-primary {
+            background-color: #4A6CF7;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #3a5bd9;
+            box-shadow: 0 5px 15px rgba(74, 108, 247, 0.3);
+        }
+
+        .btn-kakao {
+            background-color: #FEE500;
+            color: #000000;
+        }
+
+        .btn-kakao:hover {
+            background-color: #f4dc00;
+            box-shadow: 0 5px 15px rgba(254, 229, 0, 0.3);
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 13px;
+            color: #888;
+        }
+
+        .footer a {
+            color: #4A6CF7;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* 물결 효과 */
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+
+            .login-box {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <div class="logo">
+                <!-- 로고 (SVG 사용) -->
+                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="40" cy="40" r="40" fill="#4A6CF7" fill-opacity="0.1"/>
+                    <path d="M52 28H28V52H52V28Z" stroke="#4A6CF7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M28 40H52" stroke="#4A6CF7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M40 28V52" stroke="#4A6CF7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+
+            <h1>환영합니다!</h1>
+            <p class="subtitle">로그인 방식을 선택해주세요</p>
+
+            <div class="login-options">
+                <a href="/view/users/login/basic" class="btn btn-primary">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M20.5899 22C20.5899 18.13 16.7399 15 11.9999 15C7.25991 15 3.40991 18.13 3.40991 22" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    일반 로그인
+                </a>
+
+                <a href="/view/users/login/kakao" class="btn btn-kakao">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 3C7.03125 3 3 6.03125 3 9.8125C3 12.2344 4.55469 14.3594 6.94531 15.5859L5.57812 19.7109C5.53125 19.8516 5.57812 20.0156 5.69531 20.1094C5.76562 20.1797 5.88281 20.2031 6 20.1562L10.8984 17.2734C11.2734 17.3203 11.6484 17.3438 12 17.3438C16.9688 17.3438 21 14.3125 21 9.53125C21 5.95312 16.9688 3 12 3Z" fill="black"/>
+                    </svg>
+                    카카오 로그인
+                </a>
+            </div>
+
+            <div class="footer">
+                <p>아직 계정이 없으신가요? <a href="/view/users/signup">회원가입</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 버튼 물결 효과
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // 현재 버튼 내에서의 클릭 위치 계산
+                const x = e.clientX - e.target.getBoundingClientRect().left;
+                const y = e.clientY - e.target.getBoundingClientRect().top;
+
+                // 물결 효과 요소 생성
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+
+                // 버튼에 물결 효과 요소 추가
+                this.appendChild(ripple);
+
+                // 애니메이션 완료 후 요소 제거
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // 페이지 로드 애니메이션
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginBox = document.querySelector('.login-box');
+            loginBox.style.opacity = '0';
+            loginBox.style.transform = 'translateY(20px)';
+
+            setTimeout(() => {
+                loginBox.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                loginBox.style.opacity = '1';
+                loginBox.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

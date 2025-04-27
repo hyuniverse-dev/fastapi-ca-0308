@@ -14,5 +14,29 @@
         "password": "$2b$12$EbcLIqOCpibA5QjJ1mK4EOKofKoFoOC98Bz3GquCEiC99/ffPAjM2",
         "created_at": "2025-04-27 11:07:27.334321",
         "updated_at": "2025-04-27 11:07:27.334321"
+    },
+    {
+        "id": "01JSTH69N4NFCP9NXQ85HVVPZP",
+        "name": "noah",
+        "email": "noah3@email.com",
+        "password": "$2b$12$.BpzWKMGK97agvj.Q/DKSu1HzA3O6av7SqgMEL/INnZ4Q0zEu2bwu",
+        "created_at": "2025-04-27 11:28:31.524609",
+        "updated_at": "2025-04-27 11:28:31.524609"
+    },
+    {
+        "id": "01JSTHF8MPCH1KRNWJ6PPZ0CQH",
+        "name": "noah",
+        "email": "noah4@email.com",
+        "password": "$2b$12$gjtlRoOV6z.J3cbOTpY2P.hbHOX3rjJZPV.jORjY2BFL.9Qh1U5um",
+        "created_at": "2025-04-27 11:33:25.398682",
+        "updated_at": "2025-04-27 11:33:25.398682"
+    },
+    {
+        "id": "01JSTHJ1H4YW4RW7T0E2YF7MBJ",
+        "name": "noah",
+        "email": "noah5@email.com",
+        "password": "$2b$12$TljjTXH0XH.WRtgxI8YFau0hKl6S7gRdFKN8RphunIjiDUkRKv7m.",
+        "created_at": "2025-04-27 11:34:56.420563",
+        "updated_at": "2025-04-27 11:34:56.420563"
     }
 ]
