@@ -16,9 +16,9 @@ class UserService:
             self,
             user_repo: IUserRepository
     ):
-        self.user_repo = user_repo # Depends 함수의 인수로 컨테이너에 등록한 UserRepository 객체를 제공한다.
-                                                                                 # 이제 UserService 에서는 컨테이너에서 제공하는 UserRepository 객체를 사용하는 것이고,
-                                                                                 # 이제는 UserService 에서는 UserRepository 를 직접 의존하지 않게 된다.
+        self.user_repo = user_repo  # Depends 함수의 인수로 컨테이너에 등록한 UserRepository 객체를 제공한다.
+        # 이제 UserService 에서는 컨테이너에서 제공하는 UserRepository 객체를 사용하는 것이고,
+        # 이제는 UserService 에서는 UserRepository 를 직접 의존하지 않게 된다.
         self.ulid = ULID()
         self.crypto = Crypto()
 
@@ -44,11 +44,19 @@ class UserService:
             id=self.ulid.generate(),  # ulid 라이브러리르 사용해서 id 값 대입
             name=name,
             email=email,
-            password=self.crypto.encrypt(password), # 비밀번호 암호화 적용
+            password=self.crypto.encrypt(password),  # 비밀번호 암호화 적용
             created_at=str(now),  # datetime 타입을 str 로 형변환
             updated_at=str(now)
         )
 
         self.user_repo.save(user)  # save 메소드 구현 예정
+
+        return user
+
+    def find_login_user(self, email: str, password: str):
+        user = self.user_repo.find_login_user(email, password)
+
+        if not user:
+            raise HTTPException(status_code=422, detail="존재하지 않는 사용자입니다.")
 
         return user

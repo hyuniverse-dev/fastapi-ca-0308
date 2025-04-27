@@ -38,5 +38,21 @@
         "password": "$2b$12$TljjTXH0XH.WRtgxI8YFau0hKl6S7gRdFKN8RphunIjiDUkRKv7m.",
         "created_at": "2025-04-27 11:34:56.420563",
         "updated_at": "2025-04-27 11:34:56.420563"
+    },
+    {
+        "id": "01JSTM9NKH6NF5S6T0CAGNFG0T",
+        "name": "박노아",
+        "email": "sample1@email.com",
+        "password": "$2b$12$DegKd2fe95CX2iQQHeo4gOwK1Cjrenn7k5VlbuU6j/ngxtM7VjzkK",
+        "created_at": "2025-04-27 12:22:47.793641",
+        "updated_at": "2025-04-27 12:22:47.793641"
+    },
+    {
+        "id": "01JSTP1Z58MNMN1Y5WS2ARND0Y",
+        "name": "박노아99",
+        "email": "noah99@email.com",
+        "password": "$2b$12$TiBeiznXqDTIxYLmhnqptuPmOxwpBk2zzXrK1QCUynatp2T1NPcFm",
+        "created_at": "2025-04-27 12:53:32.584755",
+        "updated_at": "2025-04-27 12:53:32.584755"
     }
 ]

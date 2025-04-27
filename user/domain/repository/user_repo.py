@@ -14,7 +14,9 @@ User 도메인 영속화하기 위한 모듈이다.
 '''
 from abc import ABCMeta, abstractmethod
 
+import user.infra.db_models.user
 from user.domain.user import User
+from user.infra.db_models.user import User as UserVO
 
 
 class IUserRepository(metaclass=ABCMeta):
@@ -25,4 +27,8 @@ class IUserRepository(metaclass=ABCMeta):
 
     @abstractmethod
     def find_by_email(self, email: str) -> User:
+        raise NotImplementedError("메소드가 구현되지 않았습니다.")
+
+    @abstractmethod
+    def find_login_user(self, email: str, password: str) -> UserVO:
         raise NotImplementedError("메소드가 구현되지 않았습니다.")

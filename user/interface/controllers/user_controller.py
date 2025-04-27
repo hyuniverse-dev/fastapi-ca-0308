@@ -15,6 +15,11 @@ class CreateUserBody(BaseModel):  # 파이단틱을 사용해서 요청 본문�
     password: str = Field(min_length=8, max_length=32)
 
 
+class LoginUserBody(BaseModel):
+    email: EmailStr = Field(max_length=64)
+    password: str = Field(min_length=8, max_length=32)
+
+
 class UserResponse(BaseModel):
     id: str
     # name: str
@@ -23,6 +28,7 @@ class UserResponse(BaseModel):
     updated_at: str
 
 
+# 회원가입 라우팅 함수
 @router.post("", status_code=201)  # post 메소드를 사용하고 성공했을 때는 201 HTTP 상태코드를 반환한다.
 @inject
 def create_user(
@@ -31,3 +37,18 @@ def create_user(
 ) -> UserResponse:
     user = user_service.create_user(name=user.name, email=user.email, password=user.password)
     return user
+
+
+# 일반 로그인 라우팅 함수
+@router.post("/login/basic", status_code=200)
+@inject
+def basic_login(
+        user: LoginUserBody,
+        user_service: UserService = Depends(Provide[Container.user_service])
+):
+    user = user_service.find_login_user(
+        email=user.email,
+        password=user.password
+    )
+
+    return {"user": user}
