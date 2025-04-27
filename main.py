@@ -9,12 +9,14 @@ from fastapi.exceptions import RequestValidationError
 from starlette.responses import JSONResponse
 
 from user.interface.controllers.user_controller import router as user_router
+from user.interface.views.user_view import router as user_view_router
 from containers import Container
 
 app = FastAPI()
 
 app.include_router(user_router)
-app.container = Container() # 애플리케이션을 구동할 때 앞에서 작성한 설정을 등록한다.
+app.include_router(user_view_router)
+app.container = Container()  # 애플리케이션을 구동할 때 앞에서 작성한 설정을 등록한다.
 
 
 # 설정 변경하기
