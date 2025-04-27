@@ -1,17 +1,24 @@
 from datetime import datetime
-from fastapi import HTTPException
 
+from dependency_injector.wiring import inject
+from fastapi import HTTPException
 from ulid import ULID
 
 from user.domain.repository.user_repo import IUserRepository
 from user.domain.user import User
-from user.infra.repository.user_repo import UserRepository
 from utils.crypto import Crypto
 
 
 class UserService:
-    def __init__(self):
-        self.user_repo: IUserRepository = UserRepository()
+
+    @inject
+    def __init__(
+            self,
+            user_repo: IUserRepository
+    ):
+        self.user_repe = user_repo # Depends 함수의 인수로 컨테이너에 등록한 UserRepository 객체를 제공한다.
+                                                                                 # 이제 UserService 에서는 컨테이너에서 제공하는 UserRepository 객체를 사용하는 것이고,
+                                                                                 # 이제는 UserService 에서는 UserRepository 를 직접 의존하지 않게 된다.
         self.ulid = ULID()
         self.crypto = Crypto()
 

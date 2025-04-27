@@ -11,7 +11,8 @@ dependencies = [
     "fastapi (>=0.115.12,<0.116.0)",
     "uvicorn[standard] (>=0.34.2,<0.35.0)",
     "py-ulid (>=1.0.3,<2.0.0)",
-    "passlib[bcrypt] (>=1.7.4,<2.0.0)"
+    "passlib[bcrypt] (>=1.7.4,<2.0.0)",
+    "dependency-injector (>=4.46.0,<5.0.0)"
 ]
 
 
