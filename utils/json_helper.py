@@ -16,6 +16,8 @@ class JsonHelper:
         except FileNotFoundError:
             data = list()
             return data
+        except Exception as e:
+            print(e)
 
     def save_json(self, data: list):
         try:
